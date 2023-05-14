@@ -72,14 +72,18 @@ def main():
         plot_value.append(average)
         print(average)
 
-    #近似曲線
-    a,b,c=np.polyfit(plot_range,plot_value,2)
+    # 近似曲線
+    a, b, c = np.polyfit(plot_range, plot_value, 2)
     print('a='+str(a))
     print('b='+str(b))
     print('c='+str(c))
+    x = np.arange(0, max_nodes, 0.1)
+    y = a*x**2 + b*x + c
+    plt.plot(x, y, label="Approximation Curves")
 
     # グラフの設定・表示
-    plt.plot(plot_range, plot_value, marker="o", linestyle='--')
+    plt.plot(plot_range, plot_value, marker="o",
+             linestyle='--', label="Simulation Results")
     plt.xlabel("Number of Vertexes")
     plt.ylabel("Number of Attempts")
     plt.xlim(0, max_nodes+1)
@@ -87,6 +91,8 @@ def main():
     plt.grid(True)
     for i in range(1, len(plot_range)+1):
         plt.text(i, plot_value[i-1], plot_value[i-1])
+
+    plt.legend()
     plt.show()
 
 
