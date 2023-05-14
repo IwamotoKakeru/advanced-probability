@@ -17,8 +17,7 @@ class Node:  # クーポンコレクタノードの作成
         return self.visit_flag
 
 
-def main():  # クーポンコレクタのシュミレーションを実行
-    num_of_nodes = 5
+def run_coupon_collector_sim(num_of_nodes: int):  # クーポンコレクタのシュミレーションを実行
     current_node_num = 0
     num_of_attempts = 0
     all_visit_flag = False
@@ -45,7 +44,19 @@ def main():  # クーポンコレクタのシュミレーションを実行
 
         num_of_attempts += 1
 
-    print(num_of_attempts)
+    return num_of_attempts
+
+
+def main():
+    num_of_run = 1
+    num_of_nodes = 5
+    sum = 0
+
+    for num in range(num_of_run):
+        sum += run_coupon_collector_sim(num_of_nodes)
+
+    average = sum / num_of_run
+    print(average)
 
 
 if __name__ == "__main__":
