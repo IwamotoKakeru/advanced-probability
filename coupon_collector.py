@@ -1,5 +1,6 @@
 import random
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 class Node:  # クーポンコレクタノードの作成
@@ -70,6 +71,12 @@ def main():
         average = exact_coupon_collector_average(num_of_nodes)
         plot_value.append(average)
         print(average)
+
+    #近似曲線
+    a,b,c=np.polyfit(plot_range,plot_value,2)
+    print('a='+str(a))
+    print('b='+str(b))
+    print('c='+str(c))
 
     # グラフの設定・表示
     plt.plot(plot_range, plot_value, marker="o", linestyle='--')
