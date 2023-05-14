@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 
 
 class Node:  # クーポンコレクタノードの作成
@@ -47,16 +48,36 @@ def run_coupon_collector_sim(num_of_nodes: int):  # クーポンコレクタの�
     return num_of_attempts
 
 
-def main():
-    num_of_run = 1
-    num_of_nodes = 5
+def exact_coupon_collector_average(num_of_nodes):
+    num_of_run = 10000
     sum = 0
 
     for num in range(num_of_run):
         sum += run_coupon_collector_sim(num_of_nodes)
 
     average = sum / num_of_run
-    print(average)
+    return average
+
+
+def main():
+    min_nodes = 2
+    max_nodes = 10
+
+    plot_range = range(min_nodes, max_nodes+1)
+    plot_value = []
+
+    for num_of_nodes in plot_range:
+        average = exact_coupon_collector_average(num_of_nodes)
+        plot_value.append(average)
+        print(average)
+
+    plt.plot(plot_range, plot_value, marker="o", linestyle='--')
+    plt.xlabel("Number of Vertexes")
+    plt.ylabel("Number of Attempts")
+    plt.grid(True)
+    for i in range(1, len(plot_range)+1):
+        plt.text(i, plot_value[i-1], plot_value[i-1])
+    plt.show()
 
 
 if __name__ == "__main__":
