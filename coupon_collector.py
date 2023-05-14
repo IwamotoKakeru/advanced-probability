@@ -61,7 +61,7 @@ def exact_coupon_collector_average(num_of_nodes):
 
 def main():
     min_nodes = 2
-    max_nodes = 10
+    max_nodes = 16
 
     plot_range = range(min_nodes, max_nodes+1)
     plot_value = []
@@ -71,9 +71,12 @@ def main():
         plot_value.append(average)
         print(average)
 
+    # グラフの設定・表示
     plt.plot(plot_range, plot_value, marker="o", linestyle='--')
     plt.xlabel("Number of Vertexes")
     plt.ylabel("Number of Attempts")
+    plt.xlim(0, max_nodes+1)
+    plt.ylim(0, plot_value[len(plot_range)-1]+2)
     plt.grid(True)
     for i in range(1, len(plot_range)+1):
         plt.text(i, plot_value[i-1], plot_value[i-1])
